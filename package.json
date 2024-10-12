@@ -10,6 +10,7 @@
     "check": "biome check --write",
     "check:dry-run": "biome check",
     "clean": "rimraf {bin,lib}/*.{d.ts,js}",
+    "prepare": "husky",
     "test": "vitest",
     "watch": "tsc -w"
   },
@@ -17,6 +18,8 @@
     "@biomejs/biome": "1.9.3",
     "@types/node": "22.5.4",
     "aws-cdk": "2.162.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.6.2",
