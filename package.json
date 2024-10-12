@@ -11,7 +11,8 @@
     "check:dry-run": "biome check",
     "clean": "rimraf {bin,lib}/*.{d.ts,js}",
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "watch": "tsc -w"
   },
   "devDependencies": {
