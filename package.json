@@ -1,9 +1,6 @@
 {
-  "name": "aws-cdk-example",
+  "name": "aws-cdk-lambda-api-example-2024",
   "version": "0.1.0",
-  "bin": {
-    "aws-cdk-example": "bin/aws-cdk-example.js"
-  },
   "scripts": {
     "build": "tsc",
     "cdk": "cdk",

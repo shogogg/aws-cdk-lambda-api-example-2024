@@ -1,14 +1,27 @@
-# Welcome to your CDK TypeScript project
+# aws-cdk-lambda-api-example-2024
+This is a simple example of how to create a Lambda function and expose it as an API using AWS CDK.
 
-This is a blank project for CDK development with TypeScript.
+## Documentation
+https://zenn.dev/shogogg/scraps/5af4db324ad9e1
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## How to use
+### 1. Clone the repository
+```bash
+git clone git@github.com:shogogg/aws-cdk-lambda-api-example-2024.git
+```
 
-## Useful commands
+### 2. Install dependencies
+```bash
+npm install
+```
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+### 3. Copy .env-example to .env and modify it
+```bash
+cp .env-example .env
+vi .env
+```
+
+### 4. Deploy the stack
+```bash
+npx cdk deploy
+```
