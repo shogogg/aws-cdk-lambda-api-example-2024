@@ -20,6 +20,9 @@ export class LambdaApiStack extends cdk.Stack {
     // Lambda: Function
     const apiFunction = new lambdaNodejs.NodejsFunction(this, 'app', {
       runtime: lambda.Runtime.NODEJS_20_X,
+      environment: {
+        APP_GREETING_NAME: 'Lambda',
+      },
     })
 
     // API Gateway: Routing
