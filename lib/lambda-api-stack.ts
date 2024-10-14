@@ -31,9 +31,18 @@ export class LambdaApiStack extends cdk.Stack {
     })
 
     // ACM: Certificate
-    new certificationManager.Certificate(this, 'Certificate', {
+    const certificate = new certificationManager.Certificate(this, 'Certificate', {
       domainName,
       validation: certificationManager.CertificateValidation.fromDns(hostedZone),
     })
+
+    // API Gateway: Custom Domain
+    const customDomain = new apiGateway.DomainName(this, 'CustomDomain', {
+      domainName,
+      certificate,
+      securityPolicy: apiGateway.SecurityPolicy.TLS_1_2,
+      endpointType: apiGateway.EndpointType.REGIONAL,
+    })
+    customDomain.addBasePathMapping(api)
   }
 }

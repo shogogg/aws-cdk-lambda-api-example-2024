@@ -58,4 +58,14 @@ describe('LambdaApiStack', () => {
       DomainName: 'api.example.org',
     })
   })
+
+  it('has API Gateway Custom Domain', () => {
+    template.resourceCountIs('AWS::ApiGateway::DomainName', 1)
+  })
+
+  it('has API Gateway Custom Domain with the specified domain name', () => {
+    template.hasResourceProperties('AWS::ApiGateway::DomainName', {
+      DomainName: 'api.example.org',
+    })
+  })
 })
