@@ -11,6 +11,7 @@ const account = process.env.APP_AWS_ACCOUNT ?? process.env.CDK_DEFAULT_ACCOUNT
 const region = process.env.APP_AWS_REGION ?? process.env.CDK_DEFAULT_REGION
 const appName = process.env.APP_NAME ?? 'ExampleApp'
 const hostedZoneName = process.env.APP_HOSTED_ZONE_NAME ?? 'example.com'
+const domainName = process.env.APP_DOMAIN_NAME ?? 'api.example.com'
 
 const app = new cdk.App()
 
@@ -20,4 +21,5 @@ new LambdaApiStack(app, `${appName}LambdaApiStack`, {
     region,
   },
   hostedZoneName,
+  domainName,
 })
