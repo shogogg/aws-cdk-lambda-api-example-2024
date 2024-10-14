@@ -4,6 +4,7 @@ import * as certificationManager from 'aws-cdk-lib/aws-certificatemanager'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs'
 import * as route53 from 'aws-cdk-lib/aws-route53'
+import * as route53Targets from 'aws-cdk-lib/aws-route53-targets'
 import type { Construct } from 'constructs'
 
 interface LambdaApiStackProps extends cdk.StackProps {
@@ -44,5 +45,12 @@ export class LambdaApiStack extends cdk.Stack {
       endpointType: apiGateway.EndpointType.REGIONAL,
     })
     customDomain.addBasePathMapping(api)
+
+    // Route 53: Record
+    new route53.ARecord(this, 'ARecord', {
+      zone: hostedZone,
+      recordName: domainName,
+      target: route53.RecordTarget.fromAlias(new route53Targets.ApiGatewayDomain(customDomain)),
+    })
   }
 }

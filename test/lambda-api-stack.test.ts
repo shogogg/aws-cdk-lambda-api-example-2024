@@ -68,4 +68,20 @@ describe('LambdaApiStack', () => {
       DomainName: 'api.example.org',
     })
   })
+
+  it('has Route 53 RecordSet', () => {
+    template.resourceCountIs('AWS::Route53::RecordSet', 1)
+  })
+
+  it('has Route 53 RecordSet with the specified domain name', () => {
+    template.hasResourceProperties('AWS::Route53::RecordSet', {
+      Name: 'api.example.org.',
+    })
+  })
+
+  it('has Route 53 RecordSet with the specified type', () => {
+    template.hasResourceProperties('AWS::Route53::RecordSet', {
+      Type: 'A',
+    })
+  })
 })
