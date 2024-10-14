@@ -1,4 +1,5 @@
 import * as cdk from 'aws-cdk-lib'
+import * as apiGateway from 'aws-cdk-lib/aws-apigateway'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs'
 import * as route53 from 'aws-cdk-lib/aws-route53'
@@ -14,9 +15,13 @@ export class LambdaApiStack extends cdk.Stack {
     const { hostedZoneName } = props
 
     // Lambda: Function
-    new lambdaNodejs.NodejsFunction(this, 'app', {
+    const apiFunction = new lambdaNodejs.NodejsFunction(this, 'app', {
       runtime: lambda.Runtime.NODEJS_20_X,
     })
+
+    // API Gateway: Routing
+    const api = new apiGateway.RestApi(this, 'ApiGateway')
+    api.root.addResource('example').addMethod('GET', new apiGateway.LambdaIntegration(apiFunction))
 
     // Route 53: Hosted Zone
     new route53.HostedZone(this, 'HostedZone', {

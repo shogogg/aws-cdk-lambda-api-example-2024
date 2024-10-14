@@ -24,6 +24,20 @@ describe('LambdaApiStack', () => {
     })
   })
 
+  it('has API Gateway REST API', () => {
+    template.resourceCountIs('AWS::ApiGateway::RestApi', 1)
+  })
+
+  it('has API Gateway Resource', () => {
+    template.resourceCountIs('AWS::ApiGateway::Resource', 1)
+  })
+
+  it('has API Gateway Resource with the specified path', () => {
+    template.hasResourceProperties('AWS::ApiGateway::Resource', {
+      PathPart: 'example',
+    })
+  })
+
   it('has hosted zone', () => {
     template.resourceCountIs('AWS::Route53::HostedZone', 1)
   })
