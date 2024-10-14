@@ -14,6 +14,16 @@ describe('LambdaApiStack', () => {
     template = Template.fromStack(stack)
   })
 
+  it('has lambda function', () => {
+    template.resourceCountIs('AWS::Lambda::Function', 1)
+  })
+
+  it('has lambda function with the specified runtime', () => {
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Runtime: 'nodejs20.x',
+    })
+  })
+
   it('has hosted zone', () => {
     template.resourceCountIs('AWS::Route53::HostedZone', 1)
   })
